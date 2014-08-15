@@ -1,0 +1,11 @@
+- hosts: prod
+  tasks: 
+  - name: Push changes to remote repository
+    local_action: command git push origin master 
+  - name: Pull changes on the production server
+    command: git pull
+    args:
+      chdir: /path/to/app
+  - name: Restart application server
+    sudo: yes
+    command: service app restart
