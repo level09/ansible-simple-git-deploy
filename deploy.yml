@@ -1,11 +1,15 @@
+---
 - hosts: prod
-  tasks: 
+  user: "{{deploy_user}}"
+  vars_files:
+    - vars.yml
+  tasks:
   - name: Push changes to remote repository
     local_action: command git push origin master 
   - name: Pull changes on the production server
     command: git pull
     args:
-      chdir: /path/to/app
+      chdir: "{{app_root}}"
   - name: Restart application server
     sudo: yes
-    command: service app restart
+    command: service {{ app_server_name }} restart

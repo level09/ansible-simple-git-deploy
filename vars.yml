@@ -1,0 +1,4 @@
+---
+app_root: /path/to/app
+app_server_name: app
+deploy_user: username
